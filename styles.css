@@ -1,0 +1,1687 @@
+/* ==========================================================================
+   ASHLYN DRAGO — 16MM HAND-PROCESSED FILM PORTFOLIO
+   World: Hand-Processed Film Bloom (Pinned Deep Blue Light Leak)
+   ========================================================================== */
+
+/* 1. Self-Hosted Typefaces */
+@font-face {
+  font-family: 'Big Shoulders Display';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('assets/fonts/big-shoulders-display-latin-600-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Big Shoulders Display';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('assets/fonts/big-shoulders-display-latin-800-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Big Shoulders Text';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('assets/fonts/big-shoulders-text-latin-500-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Reenie Beanie';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('assets/fonts/reenie-beanie-latin-400-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Hanken Grotesk';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('assets/fonts/hanken-grotesk-latin-400-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Hanken Grotesk';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('assets/fonts/hanken-grotesk-latin-400-italic.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Hanken Grotesk';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('assets/fonts/hanken-grotesk-latin-600-normal.woff2') format('woff2');
+}
+
+/* 2. Tokens & Custom Properties */
+:root {
+  --bg-leader: #0a0b0e;
+  --bg-strip: #111318;
+  --bg-emulsion: #1a1c21;
+  --bg-emulsion-raised: #22252c;
+  --border-hairline: #2a2e36;
+  --border-strong: #3a404c;
+
+  --text-emulsion: #c9ced6;
+  --text-bright: #eef1f6;
+  --text-silver: #9299a6;
+  --text-edge-code: #6d7482;
+
+  --leak-cobalt: #1e3c8c;
+  --leak-electric: #4f74e0;
+  --leak-ice: #8fb0ff;
+  --leak-glow: rgba(79, 116, 224, 0.36);
+
+  --wax-amber: #e0a84c;
+  --sepia-paper: #c8b089;
+
+  --font-display: 'Big Shoulders Display', sans-serif;
+  --font-rail: 'Big Shoulders Text', sans-serif;
+  --font-wax: 'Reenie Beanie', cursive;
+  --font-body: 'Hanken Grotesk', sans-serif;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --rail-left-w: 48px;
+}
+
+/* 3. Browser Surfaces & Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: var(--bg-leader);
+  color: var(--text-emulsion);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  scroll-behavior: smooth;
+  color-scheme: dark;
+  caret-color: var(--leak-electric);
+  scrollbar-width: thin;
+  scrollbar-color: var(--leak-cobalt) var(--bg-leader);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-leader);
+  border-left: 1px solid var(--border-hairline);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--leak-cobalt);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--leak-electric);
+}
+
+::selection {
+  background-color: var(--leak-cobalt);
+  color: var(--text-bright);
+}
+
+:focus-visible {
+  outline: 2px solid var(--leak-electric);
+  outline-offset: 3px;
+}
+
+body {
+  background-color: var(--bg-leader);
+  color: var(--text-emulsion);
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+  /* Subtle darkroom dust & chemical vignette */
+  background-image:
+    radial-gradient(circle at 60% 25%, rgba(30, 60, 140, 0.14) 0%, transparent 55%),
+    radial-gradient(circle at 20% 80%, rgba(30, 60, 140, 0.08) 0%, transparent 50%);
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.24em;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--border-strong);
+  transition: color 0.2s var(--ease-out-expo), text-decoration-color 0.2s var(--ease-out-expo);
+}
+
+a:hover {
+  color: var(--text-bright);
+  text-decoration-color: var(--leak-electric);
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* 4. Top Film Leader Header */
+.top-leader {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  height: 58px;
+  background-color: rgba(10, 11, 14, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border-hairline);
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  padding: 0 1.5rem 0 calc(var(--rail-left-w) + 1.25rem);
+  gap: 1.5rem;
+}
+
+.brand-stamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  text-decoration: none;
+  color: var(--text-bright);
+}
+
+.brand-stamp-icon {
+  width: 24px;
+  height: 24px;
+  color: var(--leak-electric);
+  flex-shrink: 0;
+}
+
+.brand-stamp-text {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.25rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.brand-stamp-sub {
+  font-family: var(--font-rail);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  color: var(--text-silver);
+  text-transform: uppercase;
+  border-left: 1px solid var(--border-hairline);
+  padding-left: 0.65rem;
+}
+
+.leader-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.75rem;
+  list-style: none;
+}
+
+.leader-nav a {
+  font-family: var(--font-rail);
+  font-weight: 500;
+  font-size: 0.82rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-silver);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 0.35em;
+  padding: 0.25rem 0;
+}
+
+.leader-nav a:hover,
+.leader-nav a.is-current {
+  color: var(--text-bright);
+  text-decoration-color: var(--leak-electric);
+}
+
+.leader-counter-cluster {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.live-frame-readout {
+  font-family: var(--font-rail);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-emulsion);
+  font-variant-numeric: tabular-nums;
+  padding: 0.3rem 0.65rem;
+  background: var(--bg-emulsion);
+  border: 1px solid var(--border-hairline);
+}
+
+.live-frame-readout strong {
+  color: var(--leak-ice);
+  font-weight: 500;
+}
+
+/* 5. Left Stamped Edge-Code Rail */
+.edge-code-rail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: var(--rail-left-w);
+  z-index: 45;
+  background-color: var(--bg-leader);
+  border-right: 1px solid var(--border-hairline);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 0;
+  user-select: none;
+  pointer-events: none;
+}
+
+.edge-code-mark {
+  font-family: var(--font-rail);
+  font-size: 0.72rem;
+  letter-spacing: 0.24em;
+  color: var(--wax-amber);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.edge-code-stream {
+  font-family: var(--font-rail);
+  font-size: 0.72rem;
+  letter-spacing: 0.26em;
+  color: var(--text-silver);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  text-transform: uppercase;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.edge-code-triangle {
+  width: 8px;
+  height: 10px;
+  color: var(--leak-electric);
+}
+
+/* 6. Sprocket Strip Button Component */
+.strip-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.85rem 2.25rem;
+  font-family: var(--font-rail);
+  font-weight: 500;
+  font-size: 0.9rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--text-bright);
+  background:
+    linear-gradient(95deg, #132864 0%, var(--leak-cobalt) 52%, var(--leak-electric) 94%, var(--leak-ice) 100%);
+  border: 1px solid var(--leak-electric);
+  border-radius: 3px;
+  box-shadow: 0 10px 28px -6px rgba(30, 60, 140, 0.65);
+  transition: transform 0.2s var(--ease-out-expo), box-shadow 0.2s var(--ease-out-expo), filter 0.2s var(--ease-out-expo);
+}
+
+/* Left & right twin sprocket holes inside the button */
+.strip-btn::before,
+.strip-btn::after {
+  content: "";
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  width: 6px;
+  background-image:
+    radial-gradient(circle, transparent 0%),
+    repeating-linear-gradient(
+      to bottom,
+      var(--bg-leader) 0px,
+      var(--bg-leader) 6px,
+      transparent 6px,
+      transparent 11px
+    );
+  opacity: 0.88;
+}
+
+.strip-btn::before {
+  left: 7px;
+}
+
+.strip-btn::after {
+  right: 7px;
+}
+
+.strip-btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.08);
+  box-shadow: 0 14px 34px -4px rgba(79, 116, 224, 0.78);
+  color: #ffffff;
+}
+
+.strip-btn--secondary {
+  background: var(--bg-emulsion);
+  border-color: var(--border-strong);
+  color: var(--text-emulsion);
+  box-shadow: 0 8px 20px -8px rgba(0, 0, 0, 0.7);
+}
+
+.strip-btn--secondary:hover {
+  border-color: var(--leak-electric);
+  color: var(--text-bright);
+  box-shadow: 0 10px 26px -6px rgba(30, 60, 140, 0.45);
+}
+
+/* 7. Main Layout Shell */
+.workprint-shell {
+  padding-left: var(--rail-left-w);
+}
+
+/* 8. First Viewport + Continuous Vertical 16mm Film Strip Section */
+.reel-stage {
+  display: grid;
+  grid-template-columns: minmax(340px, 500px) minmax(380px, 1fr) 210px;
+  gap: 2.5rem;
+  max-width: 1520px;
+  margin: 0 auto;
+  padding: 0 2rem 5rem 2rem;
+  align-items: start;
+}
+
+/* Left-Center: Physical 16mm Film Strip Column */
+.film-strip-column {
+  position: relative;
+  background-color: var(--bg-strip);
+  border-left: 1px solid var(--border-hairline);
+  border-right: 1px solid var(--border-hairline);
+  padding: 1.5rem 2.65rem;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.85);
+}
+
+/* Continuous Sprocket Perforations along both edges of the film strip */
+.film-strip-column::before,
+.film-strip-column::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 14px;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 14px,
+    #050608 14px,
+    #050608 32px,
+    transparent 32px,
+    transparent 46px
+  );
+  pointer-events: none;
+  z-index: 3;
+}
+
+.film-strip-column::before {
+  left: 10px;
+  border-right: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.film-strip-column::after {
+  right: 10px;
+  border-left: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* Individual Exposed 16mm Frame on the Strip */
+.film-frame {
+  position: relative;
+  background-color: var(--bg-emulsion);
+  border: 1px solid var(--border-hairline);
+  border-radius: 3px;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  transition:
+    border-color 0.45s var(--ease-out-expo),
+    box-shadow 0.45s var(--ease-out-expo),
+    filter 0.55s var(--ease-out-expo);
+  cursor: pointer;
+}
+
+.film-frame:last-child {
+  margin-bottom: 0;
+}
+
+/* Pinned Deep Blue Light-Leak Bloom on the Active Frame */
+.film-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      270deg,
+      rgba(143, 176, 255, 0.62) 0%,
+      rgba(79, 116, 224, 0.42) 10%,
+      rgba(30, 60, 140, 0.18) 28%,
+      transparent 58%
+    );
+  opacity: 0;
+  mix-blend-mode: screen;
+  transition: opacity 0.45s var(--ease-out-expo);
+  z-index: 2;
+}
+
+.film-frame.is-active {
+  border-color: var(--leak-electric);
+  box-shadow:
+    0 18px 44px -8px rgba(10, 11, 14, 0.92),
+    12px 0 36px -6px rgba(79, 116, 224, 0.5);
+}
+
+.film-frame.is-active::after {
+  opacity: 1;
+}
+
+.film-frame:not(.is-active) .frame-window img {
+  filter: saturate(0.82) contrast(0.96) brightness(0.86);
+}
+
+.film-frame.is-active .frame-window img {
+  filter: saturate(1.04) contrast(1.03) brightness(1);
+}
+
+/* Top & Bottom Sub-bar inside each frame */
+.frame-rebate-top,
+.frame-rebate-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.45rem 0.75rem;
+  background-color: rgba(10, 11, 14, 0.86);
+  border-bottom: 1px solid var(--border-hairline);
+  font-family: var(--font-rail);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-silver);
+}
+
+.frame-rebate-bottom {
+  border-bottom: none;
+  border-top: 1px solid var(--border-hairline);
+  padding: 0.6rem 0.85rem;
+}
+
+.frame-wax-num {
+  font-family: var(--font-wax);
+  font-size: 1.55rem;
+  line-height: 0.85;
+  color: var(--wax-amber);
+  letter-spacing: 0.02em;
+}
+
+.film-frame.is-active .frame-wax-num {
+  color: var(--leak-ice);
+}
+
+.frame-edge-stock {
+  font-variant-numeric: tabular-nums;
+  color: var(--text-silver);
+}
+
+.frame-window {
+  position: relative;
+  overflow: hidden;
+  background-color: #08090c;
+  aspect-ratio: 4 / 3;
+}
+
+.film-frame--portrait .frame-window {
+  aspect-ratio: 4 / 4.65;
+}
+
+.frame-window img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease-out-expo), filter 0.5s var(--ease-out-expo);
+}
+
+.film-frame:hover .frame-window img {
+  transform: scale(1.02);
+}
+
+.frame-caption-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.05rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-bright);
+}
+
+.frame-caption-medium {
+  font-family: var(--font-rail);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-silver);
+}
+
+/* Right Column: Sticky Editorial Slate & Active Frame Notes */
+.editorial-slate-column {
+  position: sticky;
+  top: 76px;
+  padding-top: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.85rem;
+}
+
+.hero-display-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(3.4rem, 6vw, 5.75rem);
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--text-bright);
+  text-wrap: balance;
+}
+
+.hero-intro-lead {
+  font-family: var(--font-body);
+  font-size: clamp(1.05rem, 1.35vw, 1.22rem);
+  line-height: 1.55;
+  color: var(--text-emulsion);
+  max-width: 58ch;
+  margin-top: 0.9rem;
+}
+
+.hero-intro-lead strong {
+  color: var(--text-bright);
+  font-weight: 600;
+}
+
+.slate-inline-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.35rem;
+  padding: 0.85rem 0;
+  border-top: 1px solid var(--border-hairline);
+  border-bottom: 1px solid var(--border-hairline);
+}
+
+.slate-inline-nav a {
+  font-family: var(--font-rail);
+  font-weight: 500;
+  font-size: 0.86rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-emulsion);
+  text-decoration: underline;
+  text-decoration-color: var(--leak-electric);
+  text-underline-offset: 0.32em;
+}
+
+.slate-inline-nav a:hover {
+  color: var(--leak-ice);
+}
+
+.hero-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Live Active-Frame Inspector Box on the Right Slate */
+.active-frame-dossier {
+  background-color: var(--bg-emulsion);
+  border: 1px solid var(--border-hairline);
+  padding: 1.25rem 1.4rem;
+  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.75);
+  position: relative;
+}
+
+.dossier-header-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid var(--border-hairline);
+  margin-bottom: 0.85rem;
+}
+
+.dossier-frame-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.55rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-bright);
+}
+
+.dossier-wax-badge {
+  font-family: var(--font-wax);
+  font-size: 1.75rem;
+  line-height: 1;
+  color: var(--wax-amber);
+}
+
+.dossier-meta-line {
+  font-family: var(--font-rail);
+  font-size: 0.76rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--leak-ice);
+  margin-bottom: 0.55rem;
+}
+
+.dossier-story {
+  font-size: 0.96rem;
+  line-height: 1.55;
+  color: var(--text-emulsion);
+  max-width: 65ch;
+}
+
+.dossier-wax-margin {
+  margin-top: 0.85rem;
+  padding-top: 0.65rem;
+  border-top: 1px dashed var(--border-hairline);
+  font-family: var(--font-wax);
+  font-size: 1.4rem;
+  line-height: 1.15;
+  color: var(--sepia-paper);
+}
+
+.dossier-loupe-trigger {
+  margin-top: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-rail);
+  font-size: 0.76rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--leak-ice);
+  border-bottom: 1px solid var(--leak-electric);
+  padding-bottom: 0.15rem;
+}
+
+.dossier-loupe-trigger:hover {
+  color: var(--text-bright);
+}
+
+/* Far-Right Telemetry Dock (Matches Hand-Processed Film Bloom Reference) */
+.telemetry-dock {
+  position: sticky;
+  top: 76px;
+  padding-top: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.dock-module {
+  background-color: rgba(26, 28, 33, 0.72);
+  border: 1px solid var(--border-hairline);
+  padding: 0.75rem 0.85rem;
+  font-family: var(--font-rail);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-silver);
+}
+
+.dock-module-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.dock-module-value {
+  color: var(--text-bright);
+  font-variant-numeric: tabular-nums;
+  margin-top: 0.3rem;
+}
+
+.dock-module-accent {
+  color: var(--leak-ice);
+}
+
+.dock-stepper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.45rem;
+  margin-top: 0.55rem;
+}
+
+.dock-step-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  border: 1px solid var(--border-strong);
+  background: var(--bg-leader);
+  color: var(--text-emulsion);
+  transition: border-color 0.2s var(--ease-out-expo), color 0.2s var(--ease-out-expo);
+}
+
+.dock-step-btn:hover {
+  border-color: var(--leak-electric);
+  color: var(--leak-ice);
+}
+
+.dock-note-hand {
+  font-family: var(--font-wax);
+  font-size: 1.28rem;
+  line-height: 1.1;
+  color: var(--wax-amber);
+  text-transform: none;
+  letter-spacing: 0.02em;
+  margin-top: 0.35rem;
+}
+
+/* 9. Section Divider Bands & Headings (Strict Craft Floor: NO Eyebrow/Kicker above headings) */
+.reel-section {
+  max-width: 1520px;
+  margin: 0 auto;
+  padding: 5.5rem 2rem 4rem 2rem;
+  border-top: 1px solid var(--border-hairline);
+}
+
+.section-header-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 2.25rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border-hairline);
+}
+
+.section-heading {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.4rem, 4.2vw, 3.8rem);
+  line-height: 0.95;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--text-bright);
+  text-wrap: balance;
+}
+
+.section-subcopy {
+  font-size: 1.02rem;
+  line-height: 1.55;
+  color: var(--text-silver);
+  max-width: 66ch;
+  margin-top: 0.65rem;
+}
+
+.section-wax-stamp {
+  font-family: var(--font-wax);
+  font-size: 1.75rem;
+  color: var(--wax-amber);
+  white-space: nowrap;
+}
+
+/* 10. Interactive Filterable Contact Sheet (Archive Strips) */
+.contact-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 2rem;
+}
+
+.filter-tab {
+  font-family: var(--font-rail);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.55rem 1rem;
+  background-color: var(--bg-emulsion);
+  border: 1px solid var(--border-hairline);
+  color: var(--text-silver);
+  transition: all 0.2s var(--ease-out-expo);
+}
+
+.filter-tab:hover {
+  color: var(--text-bright);
+  border-color: var(--border-strong);
+}
+
+.filter-tab.is-selected {
+  background: linear-gradient(95deg, #132864 0%, var(--leak-cobalt) 75%, var(--leak-electric) 100%);
+  border-color: var(--leak-electric);
+  color: var(--text-bright);
+  box-shadow: 0 6px 20px -4px rgba(30, 60, 140, 0.55);
+}
+
+.filter-count {
+  font-variant-numeric: tabular-nums;
+  color: var(--wax-amber);
+  margin-left: 0.35rem;
+}
+
+.filter-tab.is-selected .filter-count {
+  color: var(--text-bright);
+}
+
+/* Contact Sheet Proof Strip Container */
+.contact-proof-sheet {
+  background-color: var(--bg-strip);
+  border: 1px solid var(--border-hairline);
+  padding: 2.1rem 1.25rem;
+  position: relative;
+  box-shadow: 0 24px 52px rgba(0, 0, 0, 0.82);
+}
+
+/* Top & bottom horizontal sprocket tracks on the proof sheet */
+.contact-proof-sheet::before,
+.contact-proof-sheet::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 12px;
+  background-image: repeating-linear-gradient(
+    to right,
+    transparent 0px,
+    transparent 12px,
+    #050608 12px,
+    #050608 26px,
+    transparent 26px,
+    transparent 38px
+  );
+  pointer-events: none;
+}
+
+.contact-proof-sheet::before {
+  top: 7px;
+}
+
+.contact-proof-sheet::after {
+  bottom: 7px;
+}
+
+.contact-strip-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
+  gap: 1px;
+  background-color: var(--border-hairline);
+  border: 1px solid var(--border-hairline);
+}
+
+.proof-cell {
+  background-color: var(--bg-leader);
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.55rem;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.25s var(--ease-out-expo);
+}
+
+.proof-cell[hidden] {
+  display: none;
+}
+
+.proof-cell:hover {
+  background-color: var(--bg-emulsion);
+}
+
+/* Grease pencil circle mark on hover */
+.proof-cell::before {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border: 1px solid transparent;
+  pointer-events: none;
+  transition: border-color 0.25s var(--ease-out-expo), box-shadow 0.25s var(--ease-out-expo);
+}
+
+.proof-cell:hover::before {
+  border-color: var(--leak-electric);
+  box-shadow: inset -18px 0 28px -12px rgba(79, 116, 224, 0.35);
+}
+
+.proof-cell-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-rail);
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-silver);
+}
+
+.proof-cell-num {
+  font-family: var(--font-wax);
+  font-size: 1.35rem;
+  line-height: 0.9;
+  color: var(--wax-amber);
+}
+
+.proof-thumb-wrap {
+  aspect-ratio: 4 / 3;
+  background-color: #060709;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.proof-thumb-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s var(--ease-out-expo), filter 0.35s var(--ease-out-expo);
+}
+
+.proof-cell:hover .proof-thumb-wrap img {
+  transform: scale(1.03);
+}
+
+.proof-cell-foot {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding-top: 0.2rem;
+}
+
+.proof-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.98rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-bright);
+}
+
+.proof-tag {
+  font-family: var(--font-rail);
+  font-size: 0.66rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--leak-ice);
+  flex-shrink: 0;
+}
+
+/* 11. Animation Screening Room (16mm Projector Gate) */
+.screening-layout {
+  display: grid;
+  grid-template-columns: 1.35fr 0.85fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.projector-gate-box {
+  background-color: var(--bg-strip);
+  border: 1px solid var(--border-strong);
+  padding: 1.1rem 2.2rem;
+  position: relative;
+  box-shadow:
+    0 24px 56px rgba(0, 0, 0, 0.9),
+    10px 0 38px -8px rgba(79, 116, 224, 0.35);
+}
+
+.projector-gate-box::before,
+.projector-gate-box::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 12px;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 12px,
+    #050608 12px,
+    #050608 26px,
+    transparent 26px,
+    transparent 38px
+  );
+}
+
+.projector-gate-box::before {
+  left: 8px;
+}
+
+.projector-gate-box::after {
+  right: 8px;
+}
+
+.projector-video-wrap {
+  background-color: #000000;
+  border: 1px solid var(--leak-electric);
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.projector-video-wrap video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #000;
+}
+
+.projector-gate-caption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 0.85rem;
+  margin-top: 0.85rem;
+  border-top: 1px solid var(--border-hairline);
+}
+
+.animation-side-reel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.rigging-strip-panel {
+  background-color: var(--bg-emulsion);
+  border: 1px solid var(--border-hairline);
+  padding: 1.25rem;
+}
+
+.rigging-panel-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.4rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-bright);
+  margin-bottom: 0.5rem;
+}
+
+.rigging-steps-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  margin-top: 0.9rem;
+}
+
+.rigging-step-thumb {
+  background-color: var(--bg-leader);
+  border: 1px solid var(--border-hairline);
+  padding: 0.35rem;
+  cursor: pointer;
+  transition: border-color 0.2s var(--ease-out-expo);
+}
+
+.rigging-step-thumb:hover {
+  border-color: var(--leak-electric);
+}
+
+.rigging-step-thumb img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  width: 100%;
+}
+
+.rigging-step-label {
+  display: block;
+  font-family: var(--font-rail);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-silver);
+  margin-top: 0.3rem;
+}
+
+/* 12. Acting & Stage Section ("Unexposed Frame Waiting" + Real Stage & Voice Work) */
+.acting-split {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 2.25rem;
+  align-items: stretch;
+}
+
+.unexposed-frame-gate {
+  background-color: var(--bg-strip);
+  border: 1px dashed var(--leak-electric);
+  padding: 2rem 2.6rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 380px;
+  background-image:
+    linear-gradient(125deg, rgba(30, 60, 140, 0.22) 0%, rgba(10, 11, 14, 0.92) 55%, rgba(79, 116, 224, 0.18) 100%);
+  box-shadow: inset 0 0 48px rgba(30, 60, 140, 0.24);
+}
+
+.unexposed-frame-gate::before,
+.unexposed-frame-gate::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 12px;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 12px,
+    #050608 12px,
+    #050608 26px,
+    transparent 26px,
+    transparent 38px
+  );
+}
+
+.unexposed-frame-gate::before {
+  left: 8px;
+}
+
+.unexposed-frame-gate::after {
+  right: 8px;
+}
+
+.unexposed-center-mark {
+  my: auto;
+  padding: 1.5rem 0;
+}
+
+.unexposed-heading {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.85rem, 3vw, 2.65rem);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-bright);
+  line-height: 1;
+}
+
+.unexposed-wax-note {
+  font-family: var(--font-wax);
+  font-size: 1.75rem;
+  color: var(--wax-amber);
+  margin-top: 0.65rem;
+  line-height: 1.15;
+}
+
+.unexposed-copy {
+  font-size: 0.98rem;
+  color: var(--text-emulsion);
+  margin-top: 0.85rem;
+  max-width: 54ch;
+}
+
+.stage-ledger {
+  background-color: var(--bg-emulsion);
+  border: 1px solid var(--border-hairline);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.ledger-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+.ledger-table th,
+.ledger-table td {
+  text-align: left;
+  padding: 0.85rem 0.65rem;
+  border-bottom: 1px solid var(--border-hairline);
+  vertical-align: top;
+}
+
+.ledger-table th {
+  font-family: var(--font-rail);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-silver);
+  font-weight: 500;
+}
+
+.ledger-role {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-bright);
+}
+
+.silent-sky-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.65rem;
+}
+
+.silent-sky-thumb {
+  background-color: var(--bg-leader);
+  border: 1px solid var(--border-hairline);
+  padding: 0.4rem;
+  cursor: pointer;
+  transition: border-color 0.2s var(--ease-out-expo);
+}
+
+.silent-sky-thumb:hover {
+  border-color: var(--leak-electric);
+}
+
+.silent-sky-thumb img {
+  aspect-ratio: 16 / 10;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* 13. About & Exhibitions Ledger */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.about-statement-box {
+  background-color: var(--bg-emulsion);
+  border: 1px solid var(--border-hairline);
+  padding: 2rem;
+}
+
+.about-statement-box p {
+  font-size: 1.05rem;
+  line-height: 1.68;
+  color: var(--text-emulsion);
+  max-width: 68ch;
+}
+
+.about-statement-box p + p {
+  margin-top: 1.1rem;
+}
+
+.about-hand-signature {
+  font-family: var(--font-wax);
+  font-size: 2.3rem;
+  color: var(--wax-amber);
+  margin-top: 1.25rem;
+  line-height: 1;
+}
+
+.credentials-manifest {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.manifest-block {
+  background-color: var(--bg-strip);
+  border: 1px solid var(--border-hairline);
+  padding: 1.35rem 1.5rem;
+}
+
+.manifest-block-heading {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.35rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-bright);
+  padding-bottom: 0.55rem;
+  border-bottom: 1px solid var(--border-hairline);
+  margin-bottom: 0.85rem;
+}
+
+.manifest-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.manifest-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.94rem;
+  color: var(--text-emulsion);
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.06);
+  padding-bottom: 0.45rem;
+}
+
+.manifest-list li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.manifest-year {
+  font-family: var(--font-rail);
+  font-size: 0.76rem;
+  letter-spacing: 0.16em;
+  color: var(--leak-ice);
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+}
+
+/* 14. Stage Door (Contact Tail Leader) */
+.stage-door-footer {
+  max-width: 1520px;
+  margin: 0 auto;
+  padding: 5rem 2rem 6rem 2rem;
+  border-top: 1px solid var(--border-hairline);
+}
+
+.stage-door-gate {
+  background-color: var(--bg-strip);
+  border: 1px solid var(--leak-electric);
+  padding: 3rem 2.75rem;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  background-image:
+    linear-gradient(265deg, rgba(79, 116, 224, 0.28) 0%, rgba(30, 60, 140, 0.14) 35%, transparent 70%);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.85);
+}
+
+.stage-door-heading {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.5rem, 4.8vw, 4.25rem);
+  line-height: 0.94;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--text-bright);
+}
+
+.stage-door-sub {
+  font-size: 1.05rem;
+  color: var(--text-emulsion);
+  margin-top: 0.65rem;
+  max-width: 56ch;
+}
+
+.stage-door-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.tail-leader-colophon {
+  margin-top: 2.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  font-family: var(--font-rail);
+  font-size: 0.74rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-silver);
+}
+
+/* 15. Projector Gate Lightbox Modal */
+.projector-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background-color: rgba(6, 7, 10, 0.94);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s var(--ease-out-expo);
+}
+
+.projector-lightbox.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightbox-gate-frame {
+  width: 100%;
+  max-width: 1160px;
+  max-height: 92vh;
+  background-color: var(--bg-strip);
+  border: 1px solid var(--leak-electric);
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.95),
+    0 0 48px rgba(79, 116, 224, 0.35);
+  display: grid;
+  grid-template-columns: 1.45fr 1fr;
+  overflow: hidden;
+  position: relative;
+}
+
+.lightbox-stage-media {
+  background-color: #050608;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  max-height: 86vh;
+  border-right: 1px solid var(--border-hairline);
+}
+
+.lightbox-stage-media img {
+  max-width: 100%;
+  max-height: 78vh;
+  object-fit: contain;
+}
+
+.lightbox-slate-panel {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.5rem;
+  overflow-y: auto;
+}
+
+.lightbox-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--border-hairline);
+}
+
+.lightbox-close-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-rail);
+  font-size: 0.76rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-silver);
+  padding: 0.35rem 0.65rem;
+  border: 1px solid var(--border-strong);
+}
+
+.lightbox-close-btn:hover {
+  color: var(--text-bright);
+  border-color: var(--leak-electric);
+}
+
+.lightbox-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 2rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-bright);
+  line-height: 1.05;
+}
+
+.lightbox-medium {
+  font-family: var(--font-rail);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--leak-ice);
+  margin-top: 0.45rem;
+}
+
+.lightbox-description {
+  font-size: 0.98rem;
+  line-height: 1.62;
+  color: var(--text-emulsion);
+  margin-top: 1rem;
+}
+
+.lightbox-wax-note {
+  font-family: var(--font-wax);
+  font-size: 1.55rem;
+  line-height: 1.18;
+  color: var(--wax-amber);
+  margin-top: 1rem;
+  padding-top: 0.85rem;
+  border-top: 1px dashed var(--border-hairline);
+}
+
+.lightbox-sprocket-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-hairline);
+}
+
+/* 16. Motion: Chemical Develop-In & Reduced Motion Respect */
+@media (prefers-reduced-motion: no-preference) {
+  .film-frame {
+    transition:
+      border-color 0.45s var(--ease-out-expo),
+      box-shadow 0.45s var(--ease-out-expo),
+      transform 0.55s var(--ease-out-expo);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* 17. Responsive Breakpoints (Tablet & Mobile First-Viewport Priority) */
+@media (max-width: 1200px) {
+  .reel-stage {
+    grid-template-columns: minmax(320px, 460px) 1fr;
+  }
+  .telemetry-dock {
+    display: none;
+  }
+}
+
+@media (max-width: 880px) {
+  :root {
+    --rail-left-w: 0px;
+  }
+
+  .edge-code-rail {
+    display: none;
+  }
+
+  .top-leader {
+    padding: 0 1rem;
+    grid-template-columns: 1fr auto;
+  }
+
+  .leader-nav {
+    display: none;
+  }
+
+  .reel-stage {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1rem 1rem 3.5rem 1rem;
+  }
+
+  /* On mobile: Identity header sits cleanly above the full-width 16mm strip */
+  .editorial-slate-column {
+    position: static;
+    order: -1;
+    padding-top: 0.5rem;
+    gap: 1.15rem;
+  }
+
+  .film-strip-column {
+    padding: 1.1rem 2.1rem;
+  }
+
+  .screening-layout,
+  .acting-split,
+  .about-grid,
+  .lightbox-gate-frame {
+    grid-template-columns: 1fr;
+  }
+
+  .lightbox-stage-media {
+    max-height: 46vh;
+    border-right: none;
+    border-bottom: 1px solid var(--border-hairline);
+  }
+
+  .reel-section,
+  .stage-door-footer {
+    padding: 3.5rem 1rem;
+  }
+}
