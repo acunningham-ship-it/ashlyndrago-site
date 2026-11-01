@@ -256,6 +256,7 @@ button {
   text-decoration-color: transparent;
   text-underline-offset: 0.35em;
   padding: 0.25rem 0;
+  white-space: nowrap;
 }
 
 .leader-nav a:hover,
@@ -1645,6 +1646,7 @@ button {
     grid-template-columns: 1fr auto;
   }
 
+  .top-leader nav,
   .leader-nav {
     display: none;
   }
@@ -1698,10 +1700,6 @@ button {
   .about-grid > * {
     min-width: 0;
   }
-  .ledger-table th,
-  .ledger-table td {
-    overflow-wrap: anywhere;
-  }
 }
 
 @media (max-width: 520px) {
@@ -1711,9 +1709,49 @@ button {
   .stage-ledger {
     padding: 1rem;
   }
-  .ledger-table th,
+  /* Ledger rows stack as cards: whole words, no mid-word breaks */
+  .ledger-table,
+  .ledger-table tbody,
+  .ledger-table tr,
   .ledger-table td {
-    padding: 0.7rem 0.4rem;
+    display: block;
+  }
+  .ledger-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+  .ledger-table tr {
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--border-hairline);
+  }
+  .ledger-table td {
+    padding: 0.2rem 0;
+    border-bottom: none;
+  }
+  .ledger-table td:nth-child(n+2)::before {
+    display: block;
+    font-family: var(--font-rail);
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-silver);
+  }
+  .ledger-table td:nth-child(2)::before { content: "Production / Organisation"; }
+  .ledger-table td:nth-child(3)::before { content: "Discipline"; }
+  .ledger-table td:nth-child(n+2) { margin-top: 0.4rem; }
+
+  /* Header holds its buttons inside the 58px bar */
+  .live-frame-readout {
+    display: none;
+  }
+  .top-leader {
+    gap: 0.75rem;
+  }
+  .brand-stamp-sub {
+    display: none;
   }
 }
 
@@ -1735,5 +1773,37 @@ button {
 @media (max-width: 880px) {
   .reel-stage {
     scroll-margin-top: 9rem;
+  }
+}
+
+/* Narrow desktop: the frame readout yields so nav + button fit the 58px bar */
+@media (max-width: 1280px) {
+  .live-frame-readout {
+    display: none;
+  }
+  .top-leader {
+    gap: 1rem;
+  }
+  .leader-nav {
+    gap: 1.1rem;
+  }
+  .leader-nav a {
+    letter-spacing: 0.12em;
+  }
+  .leader-counter-cluster .strip-btn {
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 1000px) {
+  .brand-stamp-sub {
+    display: none;
+  }
+  .leader-nav {
+    gap: 0.8rem;
+  }
+  .leader-nav a {
+    font-size: 0.74rem;
+    letter-spacing: 0.08em;
   }
 }
