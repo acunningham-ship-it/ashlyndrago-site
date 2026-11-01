@@ -1685,3 +1685,55 @@ button {
     padding: 3.5rem 1rem;
   }
 }
+
+/* Mobile fit: grid children may shrink below their content, so nothing pushes the page wider than the viewport */
+@media (max-width: 880px) {
+  .screening-layout,
+  .acting-split,
+  .about-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .screening-layout > *,
+  .acting-split > *,
+  .about-grid > * {
+    min-width: 0;
+  }
+  .ledger-table th,
+  .ledger-table td {
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (max-width: 520px) {
+  .unexposed-frame-gate {
+    padding: 1.25rem;
+  }
+  .stage-ledger {
+    padding: 1rem;
+  }
+  .ledger-table th,
+  .ledger-table td {
+    padding: 0.7rem 0.4rem;
+  }
+}
+
+/* Anchor jumps land below the sticky header instead of under it */
+.reel-stage,
+.reel-section,
+.stage-door-footer {
+  scroll-margin-top: 4.5rem;
+}
+
+@media (max-width: 880px) {
+  .reel-stage,
+  .reel-section,
+  .stage-door-footer {
+    scroll-margin-top: 7.25rem;
+  }
+}
+
+@media (max-width: 880px) {
+  .reel-stage {
+    scroll-margin-top: 9rem;
+  }
+}
